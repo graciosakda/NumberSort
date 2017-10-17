@@ -57,7 +57,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.addBtn:
                 if(numberEditText.getText().length()>0) {
-                    addNumberToTextView(Integer.valueOf(numberEditText.getText().toString()));
+                    try {
+                        addNumberToTextView(Integer.valueOf(numberEditText.getText().toString()));
+                    }catch(NumberFormatException e){
+                        numberEditText.setError("Invalid Integer!");
+                    }
                 }
                 break;
 
@@ -75,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void addNumberToTextView(int i){
+    private void addNumberToTextView(Integer i){
         if(numbers.contains(i)){
             numberEditText.setError("Number exists!");
         }else{
